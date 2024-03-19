@@ -8,33 +8,32 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Business;
-namespace FlowingIdeas.Presentation
+namespace FlowingIdeas.Presentation;
+
+public partial class IdeasFlow : Form
 {
-    public partial class IdeasFlow : Form
+    public static IdeasFlow instance;
+    public IdeasFlow()
     {
-        public static IdeasFlow instance;
-        public IdeasFlow()
-        {
-            InitializeComponent();
-            instance = this;
-        }
-        private UserIdeaBusinessLogic userIdeaBusinessLogic = new UserIdeaBusinessLogic();
-        private int editId = 0;
+        InitializeComponent();
+        instance = this;
+    }
+    private UserIdeaBusinessLogic userIdeaBusinessLogic = new UserIdeaBusinessLogic();
+    private int editId = 0;
 
-        private void buttonLogIn_Click(object sender, EventArgs e)
-        {
-            WritingYourIdeasHere formWriteIdeas = new WritingYourIdeasHere();
-            formWriteIdeas.Show();
-        }
+    private void buttonLogIn_Click(object sender, EventArgs e)
+    {
+        WritingYourIdeasHere formWriteIdeas = new WritingYourIdeasHere();
+        formWriteIdeas.Show();
+    }
 
-        private void buttonCancel_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
+    private void buttonCancel_Click(object sender, EventArgs e)
+    {
+        this.Close();
+    }
 
-        private void IdeasFlow_Load(object sender, EventArgs e)
-        {
+    private void IdeasFlow_Load(object sender, EventArgs e)
+    {
 
-        }
     }
 }

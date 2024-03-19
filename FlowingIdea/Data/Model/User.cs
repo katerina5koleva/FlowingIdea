@@ -5,74 +5,73 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Data.Model
+namespace Data.Model;
+
+/// <summary>
+/// This class is the structure of the table "Users" in the database. It validates the username and password.
+/// </summary>
+public class User
 {
-    /// <summary>
-    /// This class is the structure of the table "Users" in the database. It validates the username and password.
-    /// </summary>
-    public class User
+    [Key]
+    private int id;
+    private string username;
+    private string password;
+
+    public User()
     {
-        [Key]
-        private int id;
-        private string username;
-        private string password;
 
-        public User()
+    }
+
+    private int Id { get; set; }
+    public string Username
+    {
+        get
         {
-
+            return username;
         }
-
-        private int Id { get; set; }
-        public string Username
+        set
         {
-            get
+            if (username.Length < 5 || username.Length > 15)
             {
-                return username;
+                throw new ArgumentException("Your username should be between 5 and 15 characters!");
             }
-            set
+            else
             {
-                if (username.Length < 5 || username.Length > 15)
-                {
-                    throw new ArgumentException("Your username should be between 5 and 15 characters!");
-                }
-                else
-                {
-                    this.username = value;
-                }
+                this.username = value;
             }
         }
-        public string Password
+    }
+    public string Password
+    {
+        get
         {
-            get
+            return password;
+        }
+        set
+        {
+            if (password.Length < 4)
             {
-                return password;
+                throw new ArgumentException("Please, enter a password longer than 4 characters.");
             }
-            set
+            else if (password.Length >= 4)
             {
-                if (password.Length < 4)
+                foreach (char i in password)
                 {
-                    throw new ArgumentException("Please, enter a password longer than 4 characters.");
-                }
-                else if (password.Length >= 4)
-                {
-                    foreach (char i in password)
+                    if (char.IsNumber(i))
                     {
-                        if (char.IsNumber(i))
-                        {
-                            this.password = value;
-                        }
+                        this.password = value;
                     }
                 }
-                else
-                {
-                    throw new ArgumentException("Your password should include a digit.");
-                }
+            }
+            else
+            {
+                throw new ArgumentException("Your password should include a digit.");
             }
         }
-        public User(string username, string password)
-        {
-            this.Username = username;
-            this.Password = password;
-        }
+    }
+    public User(string username, string password)
+    {
+        this.Username = username;
+        this.Password = password;
     }
 }

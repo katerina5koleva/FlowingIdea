@@ -18,18 +18,8 @@ namespace Data.Model
             }
             set
             {
-                if (textOfArtisticIdea.Length < 3)
-                {
-                    throw new ArgumentException("Your art idea should be longer!!!");
-                }
-                else if (textOfArtisticIdea.Length > 400)
-                {
-                    throw new ArgumentException("Please, write a shorter artistic idea!!!");
-                }
-                else
-                {
-                    this.textOfArtisticIdea = value;
-                }
+               
+              this.textOfArtisticIdea = value;
             }
         }
     }
