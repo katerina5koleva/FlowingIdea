@@ -1,2 +1,3 @@
 # FlowingIdea
-The newest
+The newest. An app that stores your ideas ^^.
+
