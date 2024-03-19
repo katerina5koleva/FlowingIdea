@@ -20,148 +20,126 @@
 			base.Dispose(disposing);
 		}
 
-        #region Windows Form Designer generated code
+		#region Windows Form Designer generated code
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
-        private void InitializeComponent()
-        {
-            pictureBoxOwl1 = new PictureBox();
-            Username = new TextBox();
-            Password = new TextBox();
-            LinkForgotPassword = new LinkLabel();
-            ButtonShowPassword = new CheckBox();
-            UsenameLable = new Label();
-            PasswordLabel = new Label();
-            buttonLogIn = new Button();
-            buttonCancel = new Button();
-            ((System.ComponentModel.ISupportInitialize)pictureBoxOwl1).BeginInit();
-            SuspendLayout();
-            // 
-            // pictureBoxOwl1
-            // 
-            pictureBoxOwl1.Location = new Point(51, 53);
-            pictureBoxOwl1.Margin = new Padding(3, 2, 3, 2);
-            pictureBoxOwl1.Name = "pictureBoxOwl1";
-            pictureBoxOwl1.Size = new Size(287, 236);
-            pictureBoxOwl1.TabIndex = 0;
-            pictureBoxOwl1.TabStop = false;
-            // 
-            // Username
-            // 
-            Username.Location = new Point(378, 118);
-            Username.Margin = new Padding(3, 2, 3, 2);
-            Username.Name = "Username";
-            Username.Size = new Size(271, 23);
-            Username.TabIndex = 1;
-            // 
-            // Password
-            // 
-            Password.Location = new Point(378, 176);
-            Password.Margin = new Padding(3, 2, 3, 2);
-            Password.Name = "Password";
-            Password.Size = new Size(271, 23);
-            Password.TabIndex = 2;
-            // 
-            // LinkForgotPassword
-            // 
-            LinkForgotPassword.AutoSize = true;
-            LinkForgotPassword.Location = new Point(519, 201);
-            LinkForgotPassword.Name = "LinkForgotPassword";
-            LinkForgotPassword.Size = new Size(117, 15);
-            LinkForgotPassword.TabIndex = 3;
-            LinkForgotPassword.TabStop = true;
-            LinkForgotPassword.Text = "Forgotten password?";
-            // 
-            // ButtonShowPassword
-            // 
-            ButtonShowPassword.AutoSize = true;
-            ButtonShowPassword.Location = new Point(378, 198);
-            ButtonShowPassword.Margin = new Padding(3, 2, 3, 2);
-            ButtonShowPassword.Name = "ButtonShowPassword";
-            ButtonShowPassword.Size = new Size(108, 19);
-            ButtonShowPassword.TabIndex = 4;
-            ButtonShowPassword.Text = "Show password";
-            ButtonShowPassword.UseVisualStyleBackColor = true;
-            // 
-            // UsenameLable
-            // 
-            UsenameLable.AutoSize = true;
-            UsenameLable.Location = new Point(378, 101);
-            UsenameLable.Name = "UsenameLable";
-            UsenameLable.Size = new Size(59, 15);
-            UsenameLable.TabIndex = 5;
-            UsenameLable.Text = "username";
-            // 
-            // PasswordLabel
-            // 
-            PasswordLabel.AutoSize = true;
-            PasswordLabel.Location = new Point(378, 159);
-            PasswordLabel.Name = "PasswordLabel";
-            PasswordLabel.Size = new Size(57, 15);
-            PasswordLabel.TabIndex = 6;
-            PasswordLabel.Text = "password";
-            // 
-            // buttonLogIn
-            // 
-            buttonLogIn.BackColor = Color.FromArgb(192, 255, 192);
-            buttonLogIn.ForeColor = Color.Black;
-            buttonLogIn.Location = new Point(378, 237);
-            buttonLogIn.Margin = new Padding(3, 2, 3, 2);
-            buttonLogIn.Name = "buttonLogIn";
-            buttonLogIn.Size = new Size(82, 22);
-            buttonLogIn.TabIndex = 7;
-            buttonLogIn.Text = "Login";
-            buttonLogIn.UseVisualStyleBackColor = false;
-            buttonLogIn.Click += buttonLogIn_Click;
-            // 
-            // buttonCancel
-            // 
-            buttonCancel.BackColor = Color.Bisque;
-            buttonCancel.Location = new Point(566, 237);
-            buttonCancel.Margin = new Padding(3, 2, 3, 2);
-            buttonCancel.Name = "buttonCancel";
-            buttonCancel.Size = new Size(82, 22);
-            buttonCancel.TabIndex = 8;
-            buttonCancel.Text = "Cancel";
-            buttonCancel.UseVisualStyleBackColor = false;
-            buttonCancel.Click += buttonCancel_Click;
-            // 
-            // IdeasFlow
-            // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(700, 338);
-            Controls.Add(buttonCancel);
-            Controls.Add(buttonLogIn);
-            Controls.Add(PasswordLabel);
-            Controls.Add(UsenameLable);
-            Controls.Add(ButtonShowPassword);
-            Controls.Add(LinkForgotPassword);
-            Controls.Add(Password);
-            Controls.Add(Username);
-            Controls.Add(pictureBoxOwl1);
-            Margin = new Padding(3, 2, 3, 2);
-            Name = "IdeasFlow";
-            Text = "IdeasFlow";
-            Load += IdeasFlow_Load;
-            ((System.ComponentModel.ISupportInitialize)pictureBoxOwl1).EndInit();
-            ResumeLayout(false);
-            PerformLayout();
-        }
+		/// <summary>
+		/// Required method for Designer support - do not modify
+		/// the contents of this method with the code editor.
+		/// </summary>
+		private void InitializeComponent()
+		{
+			components = new System.ComponentModel.Container();
+			txtUsername = new TextBox();
+			UsenameLable = new Label();
+			buttonLogIn = new Button();
+			buttonCancel = new Button();
+			owlbertImage1 = new PictureBox();
+			buttonSignUp = new Button();
+			errorProvider1 = new ErrorProvider(components);
+			((System.ComponentModel.ISupportInitialize)owlbertImage1).BeginInit();
+			((System.ComponentModel.ISupportInitialize)errorProvider1).BeginInit();
+			SuspendLayout();
+			// 
+			// txtUsername
+			// 
+			txtUsername.Location = new Point(451, 196);
+			txtUsername.Name = "txtUsername";
+			txtUsername.Size = new Size(309, 27);
+			txtUsername.TabIndex = 1;
+			// 
+			// UsenameLable
+			// 
+			UsenameLable.AutoSize = true;
+			UsenameLable.Font = new Font("Rockwell", 10.2F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
+			UsenameLable.ForeColor = Color.Brown;
+			UsenameLable.Location = new Point(448, 171);
+			UsenameLable.Name = "UsenameLable";
+			UsenameLable.Size = new Size(97, 22);
+			UsenameLable.TabIndex = 5;
+			UsenameLable.Text = "Username:";
+			// 
+			// buttonLogIn
+			// 
+			buttonLogIn.BackColor = Color.FromArgb(192, 255, 192);
+			buttonLogIn.Font = new Font("Rockwell", 9F, FontStyle.Bold, GraphicsUnit.Point);
+			buttonLogIn.ForeColor = Color.SeaGreen;
+			buttonLogIn.Location = new Point(455, 250);
+			buttonLogIn.Name = "buttonLogIn";
+			buttonLogIn.Size = new Size(94, 29);
+			buttonLogIn.TabIndex = 7;
+			buttonLogIn.Text = "Login";
+			buttonLogIn.UseVisualStyleBackColor = false;
+			buttonLogIn.Click += buttonLogIn_Click;
+			// 
+			// buttonCancel
+			// 
+			buttonCancel.BackColor = Color.PeachPuff;
+			buttonCancel.Font = new Font("Rockwell", 9F, FontStyle.Bold, GraphicsUnit.Point);
+			buttonCancel.ForeColor = Color.Crimson;
+			buttonCancel.Location = new Point(655, 250);
+			buttonCancel.Name = "buttonCancel";
+			buttonCancel.Size = new Size(94, 29);
+			buttonCancel.TabIndex = 8;
+			buttonCancel.Text = "Cancel";
+			buttonCancel.UseVisualStyleBackColor = false;
+			buttonCancel.Click += buttonCancel_Click;
+			// 
+			// owlbertImage1
+			// 
+			owlbertImage1.Image = FlowingIdeaApp.Properties.Resources.owlbert22;
+			owlbertImage1.Location = new Point(12, 29);
+			owlbertImage1.Name = "owlbertImage1";
+			owlbertImage1.Size = new Size(400, 400);
+			owlbertImage1.SizeMode = PictureBoxSizeMode.AutoSize;
+			owlbertImage1.TabIndex = 9;
+			owlbertImage1.TabStop = false;
+			// 
+			// buttonSignUp
+			// 
+			buttonSignUp.BackColor = Color.FromArgb(255, 255, 192);
+			buttonSignUp.Font = new Font("Rockwell", 9F, FontStyle.Bold, GraphicsUnit.Point);
+			buttonSignUp.ForeColor = Color.FromArgb(255, 128, 0);
+			buttonSignUp.Location = new Point(555, 250);
+			buttonSignUp.Name = "buttonSignUp";
+			buttonSignUp.Size = new Size(94, 29);
+			buttonSignUp.TabIndex = 10;
+			buttonSignUp.Text = "Sign up";
+			buttonSignUp.UseVisualStyleBackColor = false;
+			buttonSignUp.Click += buttonSignUp_Click;
+			// 
+			// errorProvider1
+			// 
+			errorProvider1.ContainerControl = this;
+			// 
+			// IdeasFlow
+			// 
+			AutoScaleDimensions = new SizeF(8F, 20F);
+			AutoScaleMode = AutoScaleMode.Font;
+			AutoSizeMode = AutoSizeMode.GrowAndShrink;
+			BackColor = Color.LightYellow;
+			ClientSize = new Size(800, 451);
+			Controls.Add(buttonSignUp);
+			Controls.Add(owlbertImage1);
+			Controls.Add(buttonCancel);
+			Controls.Add(buttonLogIn);
+			Controls.Add(UsenameLable);
+			Controls.Add(txtUsername);
+			Name = "IdeasFlow";
+			Text = "IdeasFlow";
+			Load += IdeasFlow_Load;
+			((System.ComponentModel.ISupportInitialize)owlbertImage1).EndInit();
+			((System.ComponentModel.ISupportInitialize)errorProvider1).EndInit();
+			ResumeLayout(false);
+			PerformLayout();
+		}
 
-        #endregion
-
-        private PictureBox pictureBoxOwl1;
-		private TextBox Username;
-		private TextBox Password;
-		private LinkLabel LinkForgotPassword;
-		private CheckBox ButtonShowPassword;
+		#endregion
+		private TextBox txtUsername;
 		private Label UsenameLable;
-		private Label PasswordLabel;
 		private Button buttonLogIn;
 		private Button buttonCancel;
+		private PictureBox owlbertImage1;
+		private Button buttonSignUp;
+		private ErrorProvider errorProvider1;
 	}
 }
