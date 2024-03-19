@@ -2527,11 +2527,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\katik\\OneDrive\\Работен плот\\FlowingIdeas\\FlowingIdeas\\FlowingIdea\\Data\\Data.csproj",
+      "projectUniqueName": "C:\\Users\\katik\\OneDrive\\Работен плот\\git\\FlowingIdea\\FlowingIdea\\Data\\Data.csproj",
       "projectName": "Data",
-      "projectPath": "C:\\Users\\katik\\OneDrive\\Работен плот\\FlowingIdeas\\FlowingIdeas\\FlowingIdea\\Data\\Data.csproj",
+      "projectPath": "C:\\Users\\katik\\OneDrive\\Работен плот\\git\\FlowingIdea\\FlowingIdea\\Data\\Data.csproj",
       "packagesPath": "C:\\Users\\katik\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\katik\\OneDrive\\Работен плот\\FlowingIdeas\\FlowingIdeas\\FlowingIdea\\Data\\obj\\",
+      "outputPath": "C:\\Users\\katik\\OneDrive\\Работен плот\\git\\FlowingIdea\\FlowingIdea\\Data\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\katik\\AppData\\Roaming\\NuGet\\NuGet.Config",

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "72QqBWK+HEwC/2FybDkgAHFAovPuSjUdkVwAHz/ZctQLvAe4NO/Kl3hUcV2D6dZ+FdWaZKrBwGS8L8xAflXjFg==",
+  "dgSpecHash": "0avWdL+3IUmZVP+uH6MzTGTw5n1LavOh5qRerNtTPRZ0IfrM2hyoaDplNfu3pdZZO8n29IiWnHx+QQSEVbv6xg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\katik\\OneDrive\\Работен плот\\FlowingIdeas\\FlowingIdeas\\FlowingIdea\\Data\\Data.csproj",
+  "projectFilePath": "C:\\Users\\katik\\OneDrive\\Работен плот\\git\\FlowingIdea\\FlowingIdea\\Data\\Data.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\katik\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\katik\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",
