@@ -17,15 +17,15 @@ namespace Data.Model;
 public abstract class Idea
 {
     [Key]
-    public int Id { get; private set; }
-    public int IdeaType { get; private set; }
-    [ForeignKey(nameof(Id))]
-    public int UserId { get; private set; }
+    public int Id { get; set; }
+    virtual public int IdeaType { get; set; }
+    [ForeignKey(nameof(User.Id))]
+    virtual public int UserId { get; set; }
+    
     public string textOfIdea;
-    public bool isDeleted { get; set; }
     public Idea()
     {
-
+    
     }
     public Idea(int id, int ideaType, int userId, string textOfIdea)
     {
@@ -33,9 +33,8 @@ public abstract class Idea
         this.IdeaType = ideaType;
         this.UserId = userId;
         this.TextOfIdea = textOfIdea;
-        isDeleted = false;
     }
-
+    
     public virtual string TextOfIdea
     {
         get
