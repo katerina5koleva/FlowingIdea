@@ -13,7 +13,11 @@ using System.Windows.Forms;
 using System.Xml.Linq;
 
 namespace FlowingIdeas.Presentation;
-
+/// <summary>
+/// This windows form allows users to add, edit, and delete different
+/// types of ideas (artistic, work, philosophical) through various button clicks,
+/// with data displayed in a DataGridView.
+/// </summary>
 public partial class WritingYourIdeasHere : Form
 {
 	//Checked boxes need to be done 
@@ -21,7 +25,7 @@ public partial class WritingYourIdeasHere : Form
 	{
 		InitializeComponent();
 	}
-	
+
 	private int editId = 0;
 	private UserIdeaBusinessLogic ideaBusinessLogic = new UserIdeaBusinessLogic();
 
@@ -49,7 +53,7 @@ public partial class WritingYourIdeasHere : Form
 	{
 		Idea update = ideaBusinessLogic.Get(id);
 		txtIdea.Text = update.textOfIdea;
-		
+
 	}
 	private void ClearTextBoxes()
 	{
@@ -59,7 +63,7 @@ public partial class WritingYourIdeasHere : Form
 	{
 		dataGridView1.Enabled = false;
 	}
-	
+
 	//private Idea GetEditedIdea()
 	//{
 	//	Idea editedIdea = new Idea();
@@ -68,7 +72,7 @@ public partial class WritingYourIdeasHere : Form
 	//	return editedIdea;
 	//}
 
-	
+
 	private void UpdateGrid()
 	{
 		dataGridView1.DataSource = ideaBusinessLogic.GetAll();
@@ -169,7 +173,10 @@ public partial class WritingYourIdeasHere : Form
 		}
 	}
 
-	
+	/// <summary>
+	/// This handles the edit button click event, retrieves the selected idea for editing
+	/// and validates the edited idea.
+	/// </summary>
 	private void editButton_Click(object sender, EventArgs e)
 	{
 		errorProvider1.Clear();
@@ -208,7 +215,9 @@ public partial class WritingYourIdeasHere : Form
 			MessageBox.Show("Your idea was updated!");
 		}
 	}
-
+	/// <summary>
+	/// This button deletes the selected idea.
+	/// </summary>
 	private void deleteButton_Click(object sender, EventArgs e)
 	{
 		if (dataGridView1.SelectedRows.Count > 0)
@@ -220,6 +229,10 @@ public partial class WritingYourIdeasHere : Form
 			ResetSelect();
 		}
 	}
+	/// <summary>
+	/// This handles the save button click event, wich updates the edited idea
+	/// </summary>
+
 	private void btnSave_Click(object sender, EventArgs e)
 	{
 		//Idea editedIdea = GetEditedIdea();
@@ -232,5 +245,42 @@ public partial class WritingYourIdeasHere : Form
 	private void FlowingIdeaForm_Load(object sender, EventArgs e)
 	{
 
+	}
+
+	private void PhlosophicalCheckBox_CheckedChanged(object sender, EventArgs e)
+	{
+		CheckBox checkBox1 = new CheckBox();
+		InitializeComponent();
+		DataTable dt = new DataTable();
+		dt.Columns.Add("Philosophical ideas:", typeof(int));//??
+		if (true)//??
+		{
+			dt.Rows.Add(new object[] { txtIdea.Text });
+		}
+	}
+
+	private void artisticIdeaCheckBox_CheckedChanged(object sender, EventArgs e)
+	{
+		CheckBox checkBox2 = new CheckBox();
+		InitializeComponent();
+		DataTable dt = new DataTable();
+		dt.Columns.Add("Artistic ideas:", typeof(int));//??
+		if (true)//??
+		{
+			dt.Rows.Add(new object[] { txtIdea.Text });
+		}
+
+	}
+
+	private void workIdeaCheckBox_CheckedChanged(object sender, EventArgs e)
+	{
+		CheckBox checkBox2 = new CheckBox();
+		InitializeComponent();
+		DataTable dt = new DataTable();
+		dt.Columns.Add("Work ideas:", typeof(int));//??
+		if (true)//??
+		{
+			dt.Rows.Add(new object[] { txtIdea.Text });
+		}
 	}
 }
