@@ -13,15 +13,20 @@ using System.Windows.Forms;
 using System.Xml.Linq;
 
 namespace FlowingIdeas.Presentation;
-
+/// <summary>
+/// This windows form allows users to add, edit, and delete different
+/// types of ideas (artistic, work, philosophical) through various button clicks,
+/// with data displayed in a DataGridView.
+/// </summary>
 public partial class WritingYourIdeasHere : Form
 {
 	//Checked boxes need to be done 
 	public WritingYourIdeasHere()
 	{
 		InitializeComponent();
+		UpdateGrid();
 	}
-	
+
 	private int editId = 0;
 	private UserIdeaBusinessLogic ideaBusinessLogic = new UserIdeaBusinessLogic();
 
@@ -49,7 +54,7 @@ public partial class WritingYourIdeasHere : Form
 	{
 		Idea update = ideaBusinessLogic.Get(id);
 		txtIdea.Text = update.textOfIdea;
-		
+
 	}
 	private void ClearTextBoxes()
 	{
@@ -59,16 +64,16 @@ public partial class WritingYourIdeasHere : Form
 	{
 		dataGridView1.Enabled = false;
 	}
-	
-	//private Idea GetEditedIdea()
-	//{
-	//	Idea editedIdea = new Idea();
-	//	editedIdea.Id = editId;
-	//	var editedtext = txtIdea.Text;
-	//	return editedIdea;
-	//}
 
-	
+	private Idea GetEditedIdea()
+	{
+		EditedIdea editedIdea = new EditedIdea();
+		editedIdea.Id = editId;
+		var editedtext = txtIdea.Text;
+		return editedIdea;
+	}
+
+
 	private void UpdateGrid()
 	{
 		dataGridView1.DataSource = ideaBusinessLogic.GetAll();
@@ -81,14 +86,9 @@ public partial class WritingYourIdeasHere : Form
 	{
 		errorProvider1.Clear();
 		bool addBool = true;
-
 		var newIdeaText = txtIdea.Text;
-		ArtisticIdea artisticIdea = new ArtisticIdea();
-		artisticIdea.textOfIdea = newIdeaText;
-		//artisticIdea.textOfArtisticIdea = newIdeaText.ToString();
-		//UserIdeaBusinessLogic.AddNewIdea(newIdeaText);
-		UpdateGrid();
 		ClearTextBoxes();
+
 		if (string.IsNullOrEmpty(txtIdea.Text))
 		{
 			errorProvider1.SetError(txtIdea, "Required");
@@ -104,9 +104,13 @@ public partial class WritingYourIdeasHere : Form
 			errorProvider1.SetError(txtIdea, "Please, write a shorter artistic idea!!!");
 		}
 
-		if (addBool)
+		if (addBool)//Needs an Add thing
 		{
+			ArtisticIdea artisticIdea = new ArtisticIdea();
+			artisticIdea.textOfIdea = newIdeaText;
 			MessageBox.Show("Your artistic idea was created!");
+			UpdateGrid();
+			ClearTextBoxes();
 		}
 
 	}
@@ -117,8 +121,6 @@ public partial class WritingYourIdeasHere : Form
 		bool addBool = true;
 
 		var newIdeaText = txtIdea.Text;
-		WorkIdea workIdea = new WorkIdea();
-		workIdea.textOfIdea = newIdeaText;
 		if (string.IsNullOrEmpty(txtIdea.Text))
 		{
 			errorProvider1.SetError(txtIdea, "Required");
@@ -134,8 +136,10 @@ public partial class WritingYourIdeasHere : Form
 			errorProvider1.SetError(txtIdea, "Please, write a shorter work idea!!!");
 		}
 
-		if (addBool)
+		if (addBool)//Needs an Add thing
 		{
+			WorkIdea workIdea = new WorkIdea();
+			workIdea.textOfIdea = newIdeaText;
 			MessageBox.Show("Your work idea was created!");
 		}
 	}
@@ -146,8 +150,7 @@ public partial class WritingYourIdeasHere : Form
 		bool addBool = true;
 
 		var newIdeaText = txtIdea.Text;
-		PhilosophicalIdea philosophicalIdea = new PhilosophicalIdea();
-		philosophicalIdea.textOfIdea = newIdeaText;
+
 		if (string.IsNullOrEmpty(txtIdea.Text))
 		{
 			errorProvider1.SetError(txtIdea, "Required");
@@ -163,13 +166,18 @@ public partial class WritingYourIdeasHere : Form
 			errorProvider1.SetError(txtIdea, "Please, write a shorter philosophical idea!!!");
 		}
 
-		if (addBool)
+		if (addBool)//Needs an Add thing
 		{
+			PhilosophicalIdea philosophicalIdea = new PhilosophicalIdea();
+			philosophicalIdea.textOfIdea = newIdeaText;
 			MessageBox.Show("Your philosophical idea was created!");
 		}
 	}
 
-	
+	/// <summary>
+	/// This handles the edit button click event, retrieves the selected idea for editing
+	/// and validates the edited idea.
+	/// </summary>
 	private void editButton_Click(object sender, EventArgs e)
 	{
 		errorProvider1.Clear();
@@ -208,7 +216,9 @@ public partial class WritingYourIdeasHere : Form
 			MessageBox.Show("Your idea was updated!");
 		}
 	}
-
+	/// <summary>
+	/// This button deletes the selected idea.
+	/// </summary>
 	private void deleteButton_Click(object sender, EventArgs e)
 	{
 		if (dataGridView1.SelectedRows.Count > 0)
@@ -220,10 +230,14 @@ public partial class WritingYourIdeasHere : Form
 			ResetSelect();
 		}
 	}
+	/// <summary>
+	/// This handles the save button click event, wich updates the edited idea
+	/// </summary>
+
 	private void btnSave_Click(object sender, EventArgs e)
 	{
-		//Idea editedIdea = GetEditedIdea();
-		//ideaBusinessLogic.Update(editedIdea);
+		Idea editedIdea = GetEditedIdea();
+		ideaBusinessLogic.Update(editedIdea);
 		UpdateGrid();
 		ResetSelect();
 		ToggleSaveUpdate();
@@ -232,5 +246,31 @@ public partial class WritingYourIdeasHere : Form
 	private void FlowingIdeaForm_Load(object sender, EventArgs e)
 	{
 
+	}
+
+	private void PhilosophicalCheckBox_CheckedChanged(object sender, EventArgs e)
+	{
+		dataGridView1.DataSource = ideaBusinessLogic.GetAllPhilosophical();
+		dataGridView1.ReadOnly = true;
+		dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+		UpdateGrid();
+	}
+
+	private void artisticIdeaCheckBox_CheckedChanged(object sender, EventArgs e)
+	{
+		dataGridView1.DataSource = ideaBusinessLogic.GetAllArtistic();
+		dataGridView1.ReadOnly = true;
+		dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+		UpdateGrid();
+
+	}
+
+	private void workIdeaCheckBox_CheckedChanged(object sender, EventArgs e)
+	{
+
+		dataGridView1.DataSource = ideaBusinessLogic.GetAllWork();
+		dataGridView1.ReadOnly = true;
+		dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+		UpdateGrid();
 	}
 }

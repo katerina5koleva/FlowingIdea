@@ -28,20 +28,30 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			Username = new TextBox();
+			components = new System.ComponentModel.Container();
+			txtUsername = new TextBox();
 			UsenameLable = new Label();
 			buttonLogIn = new Button();
 			buttonCancel = new Button();
 			owlbertImage1 = new PictureBox();
+			buttonSignUp = new Button();
+			emptyUsernameBoxError = new ErrorProvider(components);
+			shortUsernameError = new ErrorProvider(components);
+			longUsernameError = new ErrorProvider(components);
+			accountDoesNotExistError = new ErrorProvider(components);
 			((System.ComponentModel.ISupportInitialize)owlbertImage1).BeginInit();
+			((System.ComponentModel.ISupportInitialize)emptyUsernameBoxError).BeginInit();
+			((System.ComponentModel.ISupportInitialize)shortUsernameError).BeginInit();
+			((System.ComponentModel.ISupportInitialize)longUsernameError).BeginInit();
+			((System.ComponentModel.ISupportInitialize)accountDoesNotExistError).BeginInit();
 			SuspendLayout();
 			// 
-			// Username
+			// txtUsername
 			// 
-			Username.Location = new Point(451, 196);
-			Username.Name = "Username";
-			Username.Size = new Size(309, 27);
-			Username.TabIndex = 1;
+			txtUsername.Location = new Point(451, 196);
+			txtUsername.Name = "txtUsername";
+			txtUsername.Size = new Size(309, 27);
+			txtUsername.TabIndex = 1;
 			// 
 			// UsenameLable
 			// 
@@ -59,7 +69,7 @@
 			buttonLogIn.BackColor = Color.FromArgb(192, 255, 192);
 			buttonLogIn.Font = new Font("Rockwell", 9F, FontStyle.Bold, GraphicsUnit.Point);
 			buttonLogIn.ForeColor = Color.SeaGreen;
-			buttonLogIn.Location = new Point(451, 250);
+			buttonLogIn.Location = new Point(453, 250);
 			buttonLogIn.Name = "buttonLogIn";
 			buttonLogIn.Size = new Size(94, 29);
 			buttonLogIn.TabIndex = 7;
@@ -72,7 +82,7 @@
 			buttonCancel.BackColor = Color.PeachPuff;
 			buttonCancel.Font = new Font("Rockwell", 9F, FontStyle.Bold, GraphicsUnit.Point);
 			buttonCancel.ForeColor = Color.Crimson;
-			buttonCancel.Location = new Point(666, 250);
+			buttonCancel.Location = new Point(653, 250);
 			buttonCancel.Name = "buttonCancel";
 			buttonCancel.Size = new Size(94, 29);
 			buttonCancel.TabIndex = 8;
@@ -90,6 +100,34 @@
 			owlbertImage1.TabIndex = 9;
 			owlbertImage1.TabStop = false;
 			// 
+			// buttonSignUp
+			// 
+			buttonSignUp.BackColor = Color.FromArgb(255, 255, 128);
+			buttonSignUp.Font = new Font("Rockwell", 9F, FontStyle.Bold, GraphicsUnit.Point);
+			buttonSignUp.ForeColor = Color.OrangeRed;
+			buttonSignUp.Location = new Point(553, 250);
+			buttonSignUp.Name = "buttonSignUp";
+			buttonSignUp.Size = new Size(94, 29);
+			buttonSignUp.TabIndex = 10;
+			buttonSignUp.Text = "Sign up";
+			buttonSignUp.UseVisualStyleBackColor = false;
+			// 
+			// emptyUsernameBoxError
+			// 
+			emptyUsernameBoxError.ContainerControl = this;
+			// 
+			// shortUsernameError
+			// 
+			shortUsernameError.ContainerControl = this;
+			// 
+			// longUsernameError
+			// 
+			longUsernameError.ContainerControl = this;
+			// 
+			// accountDoesNotExistError
+			// 
+			accountDoesNotExistError.ContainerControl = this;
+			// 
 			// IdeasFlow
 			// 
 			AutoScaleDimensions = new SizeF(8F, 20F);
@@ -97,24 +135,34 @@
 			AutoSizeMode = AutoSizeMode.GrowAndShrink;
 			BackColor = Color.LightYellow;
 			ClientSize = new Size(800, 451);
+			Controls.Add(buttonSignUp);
 			Controls.Add(owlbertImage1);
 			Controls.Add(buttonCancel);
 			Controls.Add(buttonLogIn);
 			Controls.Add(UsenameLable);
-			Controls.Add(Username);
+			Controls.Add(txtUsername);
 			Name = "IdeasFlow";
 			Text = "IdeasFlow";
 			Load += IdeasFlow_Load;
 			((System.ComponentModel.ISupportInitialize)owlbertImage1).EndInit();
+			((System.ComponentModel.ISupportInitialize)emptyUsernameBoxError).EndInit();
+			((System.ComponentModel.ISupportInitialize)shortUsernameError).EndInit();
+			((System.ComponentModel.ISupportInitialize)longUsernameError).EndInit();
+			((System.ComponentModel.ISupportInitialize)accountDoesNotExistError).EndInit();
 			ResumeLayout(false);
 			PerformLayout();
 		}
 
 		#endregion
-		private TextBox Username;
+		private TextBox txtUsername;
 		private Label UsenameLable;
 		private Button buttonLogIn;
 		private Button buttonCancel;
 		private PictureBox owlbertImage1;
+		private Button buttonSignUp;
+		private ErrorProvider emptyUsernameBoxError;
+		private ErrorProvider shortUsernameError;
+		private ErrorProvider longUsernameError;
+		private ErrorProvider accountDoesNotExistError;
 	}
 }
