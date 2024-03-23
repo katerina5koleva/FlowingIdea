@@ -35,9 +35,15 @@
 			buttonCancel = new Button();
 			owlbertImage1 = new PictureBox();
 			buttonSignUp = new Button();
-			errorProvider1 = new ErrorProvider(components);
+			emptyUsernameBoxError = new ErrorProvider(components);
+			shortUsernameError = new ErrorProvider(components);
+			longUsernameError = new ErrorProvider(components);
+			accountDoesNotExistError = new ErrorProvider(components);
 			((System.ComponentModel.ISupportInitialize)owlbertImage1).BeginInit();
-			((System.ComponentModel.ISupportInitialize)errorProvider1).BeginInit();
+			((System.ComponentModel.ISupportInitialize)emptyUsernameBoxError).BeginInit();
+			((System.ComponentModel.ISupportInitialize)shortUsernameError).BeginInit();
+			((System.ComponentModel.ISupportInitialize)longUsernameError).BeginInit();
+			((System.ComponentModel.ISupportInitialize)accountDoesNotExistError).BeginInit();
 			SuspendLayout();
 			// 
 			// txtUsername
@@ -106,9 +112,21 @@
 			buttonSignUp.Text = "Sign up";
 			buttonSignUp.UseVisualStyleBackColor = false;
 			// 
-			// errorProvider1
+			// emptyUsernameBoxError
 			// 
-			errorProvider1.ContainerControl = this;
+			emptyUsernameBoxError.ContainerControl = this;
+			// 
+			// shortUsernameError
+			// 
+			shortUsernameError.ContainerControl = this;
+			// 
+			// longUsernameError
+			// 
+			longUsernameError.ContainerControl = this;
+			// 
+			// accountDoesNotExistError
+			// 
+			accountDoesNotExistError.ContainerControl = this;
 			// 
 			// IdeasFlow
 			// 
@@ -127,7 +145,10 @@
 			Text = "IdeasFlow";
 			Load += IdeasFlow_Load;
 			((System.ComponentModel.ISupportInitialize)owlbertImage1).EndInit();
-			((System.ComponentModel.ISupportInitialize)errorProvider1).EndInit();
+			((System.ComponentModel.ISupportInitialize)emptyUsernameBoxError).EndInit();
+			((System.ComponentModel.ISupportInitialize)shortUsernameError).EndInit();
+			((System.ComponentModel.ISupportInitialize)longUsernameError).EndInit();
+			((System.ComponentModel.ISupportInitialize)accountDoesNotExistError).EndInit();
 			ResumeLayout(false);
 			PerformLayout();
 		}
@@ -139,6 +160,9 @@
 		private Button buttonCancel;
 		private PictureBox owlbertImage1;
 		private Button buttonSignUp;
-		private ErrorProvider errorProvider1;
+		private ErrorProvider emptyUsernameBoxError;
+		private ErrorProvider shortUsernameError;
+		private ErrorProvider longUsernameError;
+		private ErrorProvider accountDoesNotExistError;
 	}
 }

@@ -24,6 +24,7 @@ public partial class WritingYourIdeasHere : Form
 	public WritingYourIdeasHere()
 	{
 		InitializeComponent();
+		UpdateGrid();
 	}
 
 	private int editId = 0;
@@ -64,13 +65,13 @@ public partial class WritingYourIdeasHere : Form
 		dataGridView1.Enabled = false;
 	}
 
-	//private Idea GetEditedIdea()
-	//{
-	//	Idea editedIdea = new Idea();
-	//	editedIdea.Id = editId;
-	//	var editedtext = txtIdea.Text;
-	//	return editedIdea;
-	//}
+	private Idea GetEditedIdea()
+	{
+		EditedIdea editedIdea = new EditedIdea();
+		editedIdea.Id = editId;
+		var editedtext = txtIdea.Text;
+		return editedIdea;
+	}
 
 
 	private void UpdateGrid()
@@ -85,14 +86,9 @@ public partial class WritingYourIdeasHere : Form
 	{
 		errorProvider1.Clear();
 		bool addBool = true;
-
 		var newIdeaText = txtIdea.Text;
-		ArtisticIdea artisticIdea = new ArtisticIdea();
-		artisticIdea.textOfIdea = newIdeaText;
-		//artisticIdea.textOfArtisticIdea = newIdeaText.ToString();
-		//UserIdeaBusinessLogic.AddNewIdea(newIdeaText);
-		UpdateGrid();
 		ClearTextBoxes();
+
 		if (string.IsNullOrEmpty(txtIdea.Text))
 		{
 			errorProvider1.SetError(txtIdea, "Required");
@@ -108,9 +104,13 @@ public partial class WritingYourIdeasHere : Form
 			errorProvider1.SetError(txtIdea, "Please, write a shorter artistic idea!!!");
 		}
 
-		if (addBool)
+		if (addBool)//Needs an Add thing
 		{
+			ArtisticIdea artisticIdea = new ArtisticIdea();
+			artisticIdea.textOfIdea = newIdeaText;
 			MessageBox.Show("Your artistic idea was created!");
+			UpdateGrid();
+			ClearTextBoxes();
 		}
 
 	}
@@ -121,8 +121,6 @@ public partial class WritingYourIdeasHere : Form
 		bool addBool = true;
 
 		var newIdeaText = txtIdea.Text;
-		WorkIdea workIdea = new WorkIdea();
-		workIdea.textOfIdea = newIdeaText;
 		if (string.IsNullOrEmpty(txtIdea.Text))
 		{
 			errorProvider1.SetError(txtIdea, "Required");
@@ -138,8 +136,10 @@ public partial class WritingYourIdeasHere : Form
 			errorProvider1.SetError(txtIdea, "Please, write a shorter work idea!!!");
 		}
 
-		if (addBool)
+		if (addBool)//Needs an Add thing
 		{
+			WorkIdea workIdea = new WorkIdea();
+			workIdea.textOfIdea = newIdeaText;
 			MessageBox.Show("Your work idea was created!");
 		}
 	}
@@ -150,8 +150,7 @@ public partial class WritingYourIdeasHere : Form
 		bool addBool = true;
 
 		var newIdeaText = txtIdea.Text;
-		PhilosophicalIdea philosophicalIdea = new PhilosophicalIdea();
-		philosophicalIdea.textOfIdea = newIdeaText;
+
 		if (string.IsNullOrEmpty(txtIdea.Text))
 		{
 			errorProvider1.SetError(txtIdea, "Required");
@@ -167,8 +166,10 @@ public partial class WritingYourIdeasHere : Form
 			errorProvider1.SetError(txtIdea, "Please, write a shorter philosophical idea!!!");
 		}
 
-		if (addBool)
+		if (addBool)//Needs an Add thing
 		{
+			PhilosophicalIdea philosophicalIdea = new PhilosophicalIdea();
+			philosophicalIdea.textOfIdea = newIdeaText;
 			MessageBox.Show("Your philosophical idea was created!");
 		}
 	}
@@ -235,8 +236,8 @@ public partial class WritingYourIdeasHere : Form
 
 	private void btnSave_Click(object sender, EventArgs e)
 	{
-		//Idea editedIdea = GetEditedIdea();
-		//ideaBusinessLogic.Update(editedIdea);
+		Idea editedIdea = GetEditedIdea();
+		ideaBusinessLogic.Update(editedIdea);
 		UpdateGrid();
 		ResetSelect();
 		ToggleSaveUpdate();
@@ -247,40 +248,29 @@ public partial class WritingYourIdeasHere : Form
 
 	}
 
-	private void PhlosophicalCheckBox_CheckedChanged(object sender, EventArgs e)
+	private void PhilosophicalCheckBox_CheckedChanged(object sender, EventArgs e)
 	{
-		CheckBox checkBox1 = new CheckBox();
-		InitializeComponent();
-		DataTable dt = new DataTable();
-		dt.Columns.Add("Philosophical ideas:", typeof(int));//??
-		if (true)//??
-		{
-			dt.Rows.Add(new object[] { txtIdea.Text });
-		}
+		dataGridView1.DataSource = ideaBusinessLogic.GetAllPhilosophical();
+		dataGridView1.ReadOnly = true;
+		dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+		UpdateGrid();
 	}
 
 	private void artisticIdeaCheckBox_CheckedChanged(object sender, EventArgs e)
 	{
-		CheckBox checkBox2 = new CheckBox();
-		InitializeComponent();
-		DataTable dt = new DataTable();
-		dt.Columns.Add("Artistic ideas:", typeof(int));//??
-		if (true)//??
-		{
-			dt.Rows.Add(new object[] { txtIdea.Text });
-		}
+		dataGridView1.DataSource = ideaBusinessLogic.GetAllArtistic();
+		dataGridView1.ReadOnly = true;
+		dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+		UpdateGrid();
 
 	}
 
 	private void workIdeaCheckBox_CheckedChanged(object sender, EventArgs e)
 	{
-		CheckBox checkBox2 = new CheckBox();
-		InitializeComponent();
-		DataTable dt = new DataTable();
-		dt.Columns.Add("Work ideas:", typeof(int));//??
-		if (true)//??
-		{
-			dt.Rows.Add(new object[] { txtIdea.Text });
-		}
+
+		dataGridView1.DataSource = ideaBusinessLogic.GetAllWork();
+		dataGridView1.ReadOnly = true;
+		dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+		UpdateGrid();
 	}
 }

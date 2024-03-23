@@ -61,14 +61,14 @@ public partial class IdeasFlow : Form
 		}
 		else
 		{
-			errorProvider1.Clear();
+			emptyUsernameBoxError.Clear();
 			bool addBool = true;
 			var logInUsername = txtUsername.Text;
 			//User writtenUsernameInBox = new User();
 			//writtenUsernameInBox.Username = logInUsername;
 			if (string.IsNullOrEmpty(txtUsername.Text))
 			{
-				errorProvider1.SetError(txtUsername, "Required");
+				emptyUsernameBoxError.SetError(txtUsername, "Required");
 				addBool = false;
 			}
 		}
@@ -97,7 +97,7 @@ public partial class IdeasFlow : Form
 		var command = new SqlCommand("select * from LoginTable where username='" + txtUsername.Text + "'", connection);
 		var dr = command.ExecuteReader();
 		var addedUsernameText = txtUsername.Text;
-		errorProvider1.Clear();
+		emptyUsernameBoxError.Clear();
 		bool addBool = true;
 		if (dr.Read())
 		{
@@ -107,17 +107,17 @@ public partial class IdeasFlow : Form
 		if (string.IsNullOrEmpty(txtUsername.Text))
 		{
 			var logInUsername = txtUsername.Text;
-			errorProvider1.SetError(txtUsername, "Required");
+			emptyUsernameBoxError.SetError(txtUsername, "Required");
 			addBool = false;
 		}
 		if (addedUsernameText.Length > 15)
 		{
-			errorProvider1.SetError(txtUsername, "Your usename needs to be shorter!");
+			emptyUsernameBoxError.SetError(txtUsername, "Your usename needs to be shorter!");
 			addBool = false;
 		}
 		if (addedUsernameText.Length < 3)
 		{
-			errorProvider1.SetError(txtUsername, "Your usename needs to be longer!");
+			emptyUsernameBoxError.SetError(txtUsername, "Your usename needs to be longer!");
 			addBool = false;
 		}
 		else
