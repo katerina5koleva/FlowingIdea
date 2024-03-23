@@ -19,10 +19,10 @@ public abstract class Idea
     [Key]
     public int Id { get; private set; }
     public int IdeaType { get; private set; }
-    [ForeignKey(nameof(Id))]
+    [ForeignKey(nameof(User.Id))]
     public int UserId { get; private set; }
+    
     public string textOfIdea;
-    public bool isDeleted { get; set; }
     public Idea()
     {
 
@@ -33,7 +33,6 @@ public abstract class Idea
         this.IdeaType = ideaType;
         this.UserId = userId;
         this.TextOfIdea = textOfIdea;
-        isDeleted = false;
     }
 
     public virtual string TextOfIdea
