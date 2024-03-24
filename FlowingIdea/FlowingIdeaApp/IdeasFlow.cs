@@ -9,7 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Business;
 using Data.Model;
-using Microsoft.Data.SqlClient;
+using System.Data.SqlClient;
+using System.Net.Http;
 namespace FlowingIdeas.Presentation;
 /// <summary>
 /// This is the first window that is an implementation of a login/signup functionality
@@ -17,121 +18,127 @@ namespace FlowingIdeas.Presentation;
 /// </summary>
 public partial class IdeasFlow : Form
 {
-	public static IdeasFlow instance;
-	public IdeasFlow()
-	{
-		InitializeComponent();
-		instance = this;
-	}
-	private UserIdeaBusinessLogic userIdeaBusinessLogic = new UserIdeaBusinessLogic();
-	private int editId = 0;
+    private static string connectionString = "Server = LAPTOP-Q0EAJ4ES\\SQLEXPRESS;" +
+                                                 "Database = FlowingIdeas;" +
+                                                "Integrated security = true;" +
+                                                "Encrypt = false;";
+    private static SqlConnection connection = new SqlConnection(connectionString);
 
-	/// <summary>
-	///	this button handles the click event of the login.
-	/// It establishes a database connection, checks if the username exists and
-	/// shows an error message if the username doesn't exist.
-	/// </summary>
+    public static IdeasFlow instance;
+    public IdeasFlow()
+    {
+        InitializeComponent();
+        instance = this;
+    }
+    private UserIdeaBusinessLogic userIdeaBusinessLogic = new UserIdeaBusinessLogic();
+    private int editId = 0;
 
-	private void buttonLogIn_Click(object sender, EventArgs e)
-	{
-		var connection = new SqlConnection(@"Server = LAPTOP-Q0EAJ4ES\\SQLEXPRESS; 
-												 Database = FlowingIdeas; 
-												Integrated security = true; 
-												Encrypt = false;");
-		connection.Open();
+    /// <summary>
+    ///	this button handles the click event of the login.
+    /// It establishes a database connection, checks if the username exists and
+    /// shows an error message if the username doesn't exist.
+    /// </summary>
 
-		if (txtUsername.Text != string.Empty)
-		{
+    private void buttonLogIn_Click(object sender, EventArgs e)
+    {
+        connection.Close();
+        connection.Open();
 
-			var command = new SqlCommand("select * from LoginTable where username='" + txtUsername.Text, connection);
-			var dr = command.ExecuteReader();
-			if (dr.Read())
-			{
-				dr.Close();
-				this.Hide();
-				WritingYourIdeasHere formWriteIdeas = new WritingYourIdeasHere();
-				formWriteIdeas.Show();
+        if (txtUsername.Text != string.Empty)
+        {
+            var command = new SqlCommand($"SELECT * FROM Users WHERE Username = @Username", connection);
+            command.Parameters.AddWithValue("@Username", txtUsername.Text);
+            var dr = command.ExecuteReader();
+            if (dr.Read())
+            {
+                dr.Close();
+                this.Hide();
+                User user = new User();
+                int userId = user.Id;
+                WritingYourIdeasHere formWriteIdeas = new WritingYourIdeasHere(userId);
+                formWriteIdeas.Show();
 
-			}
-			else
-			{
-				dr.Close();
-				MessageBox.Show("No Account avilable with this username and password ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-			}
-		}
-		else
-		{
-			emptyUsernameBoxError.Clear();
-			bool addBool = true;
-			var logInUsername = txtUsername.Text;
-			//User writtenUsernameInBox = new User();
-			//writtenUsernameInBox.Username = logInUsername;
-			if (string.IsNullOrEmpty(txtUsername.Text))
-			{
-				emptyUsernameBoxError.SetError(txtUsername, "Required");
-				addBool = false;
-			}
-		}
-	}
-	/// <summary>
-	/// This button closes the form when the cancel is clicked.
-	/// </summary>
+            }
+            else
+            {
+                dr.Close();
+                MessageBox.Show("No account avaliable with this username! ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        else
+        {
+            emptyUsernameBoxError.Clear();
+            bool addBool = true;
+            var logInUsername = txtUsername.Text;
+            //User writtenUsernameInBox = new User();
+            //writtenUsernameInBox.Username = logInUsername;
+            if (string.IsNullOrEmpty(txtUsername.Text))
+            {
+                emptyUsernameBoxError.SetError(txtUsername, "Required");
+                addBool = false;
+            }
+        }
+        connection.Close();
+    }
+    /// <summary>
+    /// This button closes the form when the cancel is clicked.
+    /// </summary>
 
-	private void buttonCancel_Click(object sender, EventArgs e)
-	{
-		this.Close();
-	}
-	/// <summary>
-	/// This button handles the click event of the sign-up. It checks if the username already exists, 
-	/// validates the length of the username, and inserts a new username into the database if validation passes.
-	/// </summary>
+    private void buttonCancel_Click(object sender, EventArgs e)
+    {
+        this.Close();
+    }
+    /// <summary>
+    /// This button handles the click event of the sign-up. It checks if the username already exists, 
+    /// validates the length of the username, and inserts a new username into the database if validation passes.
+    /// </summary>
 
-	private void buttonSignUp_Click(object sender, EventArgs e)
-	{
+    
+    private void IdeasFlow_Load(object sender, EventArgs e)
+    {
 
-		var connection = new SqlConnection(@"Server = LAPTOP-Q0EAJ4ES\\SQLEXPRESS; 
-												 Database = FlowingIdeas; 
-												Integrated security = true; 
-												Encrypt = false;");
-		connection.Open();
-		var command = new SqlCommand("select * from LoginTable where username='" + txtUsername.Text + "'", connection);
-		var dr = command.ExecuteReader();
-		var addedUsernameText = txtUsername.Text;
-		emptyUsernameBoxError.Clear();
-		bool addBool = true;
-		if (dr.Read())
-		{
-			dr.Close();
-			MessageBox.Show("Username Already exist please try another ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-		}
-		if (string.IsNullOrEmpty(txtUsername.Text))
-		{
-			var logInUsername = txtUsername.Text;
-			emptyUsernameBoxError.SetError(txtUsername, "Required");
-			addBool = false;
-		}
-		if (addedUsernameText.Length > 15)
-		{
-			emptyUsernameBoxError.SetError(txtUsername, "Your usename needs to be shorter!");
-			addBool = false;
-		}
-		if (addedUsernameText.Length < 3)
-		{
-			emptyUsernameBoxError.SetError(txtUsername, "Your usename needs to be longer!");
-			addBool = false;
-		}
-		else
-		{
-			dr.Close();
-			command = new SqlCommand("insert into LoginTable values(@username)", connection);
-			command.Parameters.AddWithValue("username", txtUsername.Text);
-			command.ExecuteNonQuery();
-			MessageBox.Show("Your Account has been created. Please login now.", "Done", MessageBoxButtons.OK, MessageBoxIcon.Information);
-		}
-	}
-	private void IdeasFlow_Load(object sender, EventArgs e)
-	{
+    }
 
-	}
+    private void buttonSignUp_Click_1(object sender, EventArgs e)
+    {
+        connection.Close();
+        connection.Open();
+        var command = new SqlCommand($"SELECT * FROM Users WHERE Username = @Username", connection);
+        command.Parameters.AddWithValue("@Username", txtUsername.Text);
+        var dr = command.ExecuteReader();
+        var addedUsernameText = txtUsername.Text;
+        emptyUsernameBoxError.Clear();
+        bool addBool = true;
+        if (dr.Read())
+        {
+            MessageBox.Show("Username already exist please try another! ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            dr.Close();
+        }
+        else if (string.IsNullOrEmpty(txtUsername.Text))
+        {
+            var logInUsername = txtUsername.Text;
+            emptyUsernameBoxError.SetError(txtUsername, "Required");
+            addBool = false;
+        }
+        else if (addedUsernameText.Length > 15)
+        {
+            emptyUsernameBoxError.SetError(txtUsername, "Your username needs to be shorter!");
+            addBool = false;
+        }
+        else if (addedUsernameText.Length < 3)
+        {
+            emptyUsernameBoxError.SetError(txtUsername, "Your username needs to be longer!");
+            addBool = false;
+        }
+        else
+        {
+            dr.Close();
+            command = new SqlCommand("INSERT INTO Users VALUES(@Username)", connection);
+            command.Parameters.AddWithValue("@Username", txtUsername.Text);
+            command.ExecuteNonQuery();
+            MessageBox.Show("Your account has been created. Please login now.", "Done", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+    }
+    
 }
 

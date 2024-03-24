@@ -22,7 +22,7 @@ public class User
 
 	}
 
-	private int Id { get; set; }
+	public int Id { get; set; }
 	public string Username
 	{
 		get
@@ -36,37 +36,8 @@ public class User
 			
 		}
 	}
-	//public string Password
-	//{
-	//    get
-	//    {
-	//        return password;
-	//    }
-	//    set
-	//    {
-	//        if (password.Length < 4)
-	//        {
-	//            throw new ArgumentException("Please, enter a password longer than 4 characters.");
-	//        }
-	//        else if (password.Length >= 4)
-	//        {
-	//            foreach (char i in password)
-	//            {
-	//                if (char.IsNumber(i))
-	//                {
-	//                    this.password = value;
-	//                }
-	//            }
-	//        }
-	//        else
-	//        {
-	//            throw new ArgumentException("Your password should include a digit.");
-	//        }
-	//    }
-	//}
-	public User(string username, string password)
+	public User(string username)
 	{
 		this.Username = username;
-		//this.Password = password;
 	}
 }

@@ -2,11 +2,17 @@
 using Data.Model;
 using System.Configuration;
 using System.Data.Entity;
+using System.Data.SqlClient;
 namespace Business;
 
 public class UserIdeaBusinessLogic
 {
-		private UserIdeaContext ideaContext;
+	private static string connectionString = "Server = LAPTOP-Q0EAJ4ES\\SQLEXPRESS;" +
+												 "Database = FlowingIdeas;" +
+												"Integrated security = true;" +
+												"Encrypt = false;";
+	private static SqlConnection connection = new SqlConnection(connectionString);
+	private UserIdeaContext ideaContext;
 		public bool CheckIfAccountExists(string writtenUsername)
 		{
 			using (ideaContext = new UserIdeaContext())
@@ -33,67 +39,121 @@ public class UserIdeaBusinessLogic
 		}
 	}
 
-	//public void LogIn(string writtenUsername, string writtenPassword)
-	//{
-	//    using (ideaContext = new UserIdeaContext())
-	//    {
-	//        if (CheckIfAccountExists(writtenUsername))
-	//        {
-	//            if (User.Password.Contains(writtenPassword))
-	//            {
-	//                
-	//            }
-	//            else
-	//            {
-	//            throw new ArgumentException("You have entered a wrong password!");
-	//            }
-	//        }
-	//    }
-	//}
-
-	public void AddNewIdea( string textIdea) //???
+	public void AddNewArtisticIdea(string textIdea, int userId)		
 	{
 		using (ideaContext = new UserIdeaContext())
 		{
 
-			ArtisticIdea artisticIdea = new ArtisticIdea();
-			PhilosophicalIdea philosophicalIdea = new PhilosophicalIdea();
-			WorkIdea workIdea = new WorkIdea();
-			
-		
+			ArtisticIdea artIdea = new ArtisticIdea() 
+			{
+				IdeaType = 1, 
+				UserId = userId, 
+				TextOfIdea = textIdea
+			};
+			ideaContext.ArtisticIdeas.Add(artIdea);
 			ideaContext.SaveChanges();
 		}
 	}
 
-	
-	public List<ArtisticIdea> GetAllArtistic()
+	public void AddNewPhilosophicalIdea(string textIdea, int userId)
 	{
 		using (ideaContext = new UserIdeaContext())
 		{
-			return ideaContext.ArtisticIdeas.ToList();
+			PhilosophicalIdea philosophicalIdea = new PhilosophicalIdea(userId, textIdea)
+			{
+				ideaType = 2,
+				UserId = userId,
+				TextOfIdea = textIdea
+			};
+			ideaContext.PhilosophicalIdeas.Add(philosophicalIdea);
+			ideaContext.SaveChanges();
 		}
+	}
+
+	public void AddNewWorkIdea(string textIdea, int userId)
+	{
+		using (ideaContext = new UserIdeaContext())
+		{
+			WorkIdea workIdea = new WorkIdea(userId, textIdea)
+			{
+				ideaType = 3,
+				UserId = userId,
+				TextOfIdea = textIdea
+			};
+			ideaContext.WorkIdeas.Add(workIdea);
+			ideaContext.SaveChanges();
+		}
+	}
+
+	public List<ArtisticIdea> GetAllArtistic()
+	{
+		List<ArtisticIdea> artisticIdeas = new List<ArtisticIdea>();
+		using (ideaContext = new UserIdeaContext())
+		{
+			connection.Open();
+			var command = new SqlCommand("SELECT * FROM ArtisticIdeas", connection);
+			using (var reader = command.ExecuteReader())
+			{ 
+				while (reader.Read())
+				{
+					ArtisticIdea artisticIdea = new ArtisticIdea();
+					artisticIdeas.Add(artisticIdea);
+				}
+			}
+			connection.Close();
+		}
+		return artisticIdeas;
 	}
 	public List<WorkIdea> GetAllWork()
 	{
+		List<WorkIdea> workIdeas = new List<WorkIdea>();
 		using (ideaContext = new UserIdeaContext())
 		{
-			return ideaContext.WorkIdeas.ToList();
+
+			connection.Open();
+			var command = new SqlCommand("SELECT * FROM WorkIdeas", connection);
+			using (var reader = command.ExecuteReader())
+			{
+				while (reader.Read())
+				{
+					WorkIdea workIdea = new WorkIdea();
+					workIdeas.Add(workIdea);
+				}
+			}
+			connection.Close();
 		}
+		return workIdeas;
 	}
 	public List<PhilosophicalIdea> GetAllPhilosophical()
 	{
+		List<PhilosophicalIdea> philosophicalIdeas = new List<PhilosophicalIdea>();
 		using (ideaContext = new UserIdeaContext())
 		{
-			return ideaContext.PhilosophicalIdeas.ToList();
+			connection.Open();
+			var command = new SqlCommand("SELECT * FROM PhilosophicalIdeas", connection);
+			using (var reader = command.ExecuteReader())
+			{
+				while (reader.Read())
+				{
+					PhilosophicalIdea philosophicalIdea = new PhilosophicalIdea();
+					philosophicalIdeas.Add(philosophicalIdea);
+				}
+			}
+			connection.Close();
 		}
+		return philosophicalIdeas;
 	}
 
 	public List<Idea> GetAll()
 	{
+		List<Idea> allIdeas = new List<Idea>();
 		using (ideaContext = new UserIdeaContext())
 		{
-			return ideaContext.Ideas.ToList();
+			allIdeas.AddRange(GetAllArtistic());
+			allIdeas.AddRange(GetAllPhilosophical());
+			allIdeas.AddRange(GetAllWork());
 		}
+		return allIdeas;
 	}
 
 	public void Delete(int id)

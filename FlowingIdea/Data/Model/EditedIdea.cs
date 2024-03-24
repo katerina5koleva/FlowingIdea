@@ -11,12 +11,10 @@ namespace Data.Model
     public class EditedIdea : Idea
     {
         [Key]
-        public int Id { get; private set; }
-        public int IdeaType { get; private set; }
+        public int Id { get; set; }
+        override public int IdeaType { get; set; }
         [ForeignKey(nameof(User.Id))]
-        public int UserId { get; private set; }
-
-        public string textOfIdea;
+        override public int UserId { get; set; }
         private string textOfEditedIdea;
 
         public override string TextOfIdea
