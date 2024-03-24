@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\pc\\Desktop\\FlowingIdeasNew\\New folder\\FlowingIdea\\FlowingIdea\\FlowingIdeaTest\\FlowingIdeaTest.csproj": {}
+    "C:\\Users\\katik\\OneDrive\\Работен плот\\git\\FlowingIdea\\FlowingIdea\\FlowingIdeaTest\\FlowingIdeaTest.csproj": {}
   },
   "projects": {
-    "C:\\Users\\pc\\Desktop\\FlowingIdeasNew\\New folder\\FlowingIdea\\FlowingIdea\\FlowingIdeaTest\\FlowingIdeaTest.csproj": {
+    "C:\\Users\\katik\\OneDrive\\Работен плот\\git\\FlowingIdea\\FlowingIdea\\FlowingIdeaTest\\FlowingIdeaTest.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\pc\\Desktop\\FlowingIdeasNew\\New folder\\FlowingIdea\\FlowingIdea\\FlowingIdeaTest\\FlowingIdeaTest.csproj",
+        "projectUniqueName": "C:\\Users\\katik\\OneDrive\\Работен плот\\git\\FlowingIdea\\FlowingIdea\\FlowingIdeaTest\\FlowingIdeaTest.csproj",
         "projectName": "FlowingIdeaTest",
-        "projectPath": "C:\\Users\\pc\\Desktop\\FlowingIdeasNew\\New folder\\FlowingIdea\\FlowingIdea\\FlowingIdeaTest\\FlowingIdeaTest.csproj",
-        "packagesPath": "C:\\Users\\pc\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\pc\\Desktop\\FlowingIdeasNew\\New folder\\FlowingIdea\\FlowingIdea\\FlowingIdeaTest\\obj\\",
+        "projectPath": "C:\\Users\\katik\\OneDrive\\Работен плот\\git\\FlowingIdea\\FlowingIdea\\FlowingIdeaTest\\FlowingIdeaTest.csproj",
+        "packagesPath": "C:\\Users\\katik\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\katik\\OneDrive\\Работен плот\\git\\FlowingIdea\\FlowingIdea\\FlowingIdeaTest\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\pc\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\katik\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -26,7 +22,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {

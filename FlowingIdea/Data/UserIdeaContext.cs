@@ -12,5 +12,5 @@ public class UserIdeaContext : DbContext
     public DbSet<PhilosophicalIdea> PhilosophicalIdeas { get; set; }
     public DbSet<User> Users { get; set; }
     public DbSet<WorkIdea> WorkIdeas { get; set; }
-    public DbSet<Idea> Ideas { get; set; }  
+    public DbSet<Idea> Ideas { get; set; }
 }
