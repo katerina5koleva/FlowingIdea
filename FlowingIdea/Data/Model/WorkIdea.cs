@@ -1,26 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Data.Model;
 
-public class WorkIdea : Idea
+public class WorkIdea //: Idea
 {
-	private string textOfWorkIdea;
-
-
-	public override string TextOfIdea
-	{
-		get
-		{
-			return textOfWorkIdea;
-		}
-		set
-		{
-
-			this.textOfWorkIdea = value;
-		}
-	}
+	public int Id { get; set; }
+	public int IdeaType { get; set; }
+	public int UserId { get; set; }
+	public string TextOfWorkIdea { get; set; }
 }
