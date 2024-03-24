@@ -14,18 +14,16 @@ namespace Data.Model;
 /// It has an autoincremented Id, IdeaType coresponding with 1, 2 or 3,
 /// depending on the idea, userID /foreign key to the table users/
 /// </summary>
-public abstract class Idea
+public class Idea
 {
-    [Key]
-    public int Id { get; private set; }
-    public int IdeaType { get; private set; }
-    [ForeignKey(nameof(Id))]
-    public int UserId { get; private set; }
+    public int Id { get; set; }
+    virtual public int IdeaType { get; set; }
+    virtual public int UserId { get; set; }
+    
     public string textOfIdea;
-    public bool isDeleted { get; set; }
     public Idea()
     {
-
+    
     }
     public Idea(int id, int ideaType, int userId, string textOfIdea)
     {
@@ -33,9 +31,8 @@ public abstract class Idea
         this.IdeaType = ideaType;
         this.UserId = userId;
         this.TextOfIdea = textOfIdea;
-        isDeleted = false;
     }
-
+    
     public virtual string TextOfIdea
     {
         get

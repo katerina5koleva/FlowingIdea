@@ -12,61 +12,7 @@ namespace Data.Model;
 /// </summary>
 public class User
 {
-	[Key]
-	private int id;
-	private string username;
-	//private string password;
-
-	public User()
-	{
-
-	}
-
-	private int Id { get; set; }
-	public string Username
-	{
-		get
-		{
-			return username;
-		}
-		set
-		{
-			
-			this.username = value;
-			
-		}
-	}
-	//public string Password
-	//{
-	//    get
-	//    {
-	//        return password;
-	//    }
-	//    set
-	//    {
-	//        if (password.Length < 4)
-	//        {
-	//            throw new ArgumentException("Please, enter a password longer than 4 characters.");
-	//        }
-	//        else if (password.Length >= 4)
-	//        {
-	//            foreach (char i in password)
-	//            {
-	//                if (char.IsNumber(i))
-	//                {
-	//                    this.password = value;
-	//                }
-	//            }
-	//        }
-	//        else
-	//        {
-	//            throw new ArgumentException("Your password should include a digit.");
-	//        }
-	//    }
-	//}
-	public User(string username, string password)
-	{
-		this.Username = username;
-		//this.Password = password;
-	}
+	public int Id { get; set; }
+	public string Username { get; set; }
+	
 }
